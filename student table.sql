@@ -100,4 +100,18 @@ VALUES
 (8, 8, '2026-04-15'),
 (9, 7, '2026-05-20'),
 (10, 10, '2026-03-30');
+
+select * from Students,Courses,Enrollments;
+
+update Students
+set city="Banglore"
+where Student_Name="Priya";
+
+update Courses
+set Fees=Fees+500
+where Course_Name="Sql";
+
+update Students
+set Age=24
+where Student_Name="Rahul";
 */
