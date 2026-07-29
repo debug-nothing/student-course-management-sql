@@ -114,4 +114,27 @@ where Course_Name="Sql";
 update Students
 set Age=24
 where Student_Name="Rahul";
+
+Delete From Students
+where Student_Name="Rohit"
+
+Delete from Courses
+where Course_Name="Tableau"
+
+select student_ID
+from Students
+where student_Name="Rohit";
+
+select Course_Name
+from Courses
+where Course_Name="Tableau";
+
+select Student_ID
+from Enrollments
+where Course_ID = Student_ID;
+*//*
+select Student_Name, City from Students;
+
+Select Student_Name, City from Students
+where City="Mumbai";
 */
