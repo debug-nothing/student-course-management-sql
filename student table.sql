@@ -137,4 +137,51 @@ select Student_Name, City from Students;
 
 Select Student_Name, City from Students
 where City="Mumbai";
+
+select student_name from students
+where Gender="Female";
+
+select student_name,student_Id from students
+where age > 22;
+
+select student_name from students
+where City="Delhi" OR City="Pune";
+*/
+/*
+select * from students
+where city Not IN ("Mumbai");
+
+select * from students
+where city != "Mumbai";
+
+select * from students
+order by age;
+
+select * from students
+order by age DESC;
+
+select * from courses 
+order by fees Desc;
+
+select Distinct city from students;
+
+select * from students 
+order by student_id 
+limit 5;
+*/
+/*
+select * from students
+where Student_name Like 'A%' ;
+
+select * from students
+where Student_name Like '%a';
+
+select * from students
+where Student_name Like '%it%';
+
+select * from students
+where age between 21 and 23;
+
+select * from students
+where city in("Mumbai","Delhi");
 */
