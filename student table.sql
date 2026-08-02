@@ -184,4 +184,28 @@ where age between 21 and 23;
 
 select * from students
 where city in("Mumbai","Delhi");
+
+select e.Course_ID,s.student_name,e.Enrollment_ID,s.Student_ID
+From Enrollments as e Right outer join students as s
+on s.student_ID=e.student_ID;
+*/
+/*
+select count(student_name) from students;
+
+select max(fees) from courses;
+
+select min(fees) from courses;
+
+select avg(age) from students;
+
+select sum(fees) from courses;
+*/
+/*
+select city, count(student_name) as No_of_students
+from students
+group by city;
+
+select course_Id, count(student_id) as no_of_student_by_courses
+from enrollments
+group by course_id;
 */
