@@ -184,10 +184,6 @@ where age between 21 and 23;
 
 select * from students
 where city in("Mumbai","Delhi");
-
-select e.Course_ID,s.student_name,e.Enrollment_ID,s.Student_ID
-From Enrollments as e Right outer join students as s
-on s.student_ID=e.student_ID;
 */
 /*
 select count(student_name) from students;
@@ -208,4 +204,27 @@ group by city;
 select course_Id, count(student_id) as no_of_student_by_courses
 from enrollments
 group by course_id;
+
+select city, count(student_id) as total_student
+from students
+group by city
+Having count(student_id) > 1;
+
+select course_id, count(Enrollment_id) as total_Enrollment
+from Enrollments
+group by course_id
+having count(enrollment_id) > 1;
+*/
+/*
+select s.student_name,c.course_name
+From students as s Inner join Enrollments as e 
+on s.student_ID=e.student_ID
+inner join courses as c
+on c.course_id=e.course_id;
+
+select s.student_name,c.course_name
+from students as s left outer join enrollments as e
+on s.student_id=e.student_id
+left outer join courses as c
+on c.course_id=e.course_id;
 */
