@@ -227,9 +227,19 @@ from students as s left outer join enrollments as e
 on s.student_id=e.student_id
 left outer join courses as c
 on c.course_id=e.course_id;
-*/
+
 select c.Course_Name,c.Course_ID,e.enrollment_id,e.student_ID
 from Courses as c left outer join enrollments as e 
 on c.course_ID=e.Course_ID
 right outer join students as s 
-on 
+on s.student_id=e.student_id;
+
+SELECT c.Course_Name,
+       c.Course_ID,
+       e.Enrollment_ID,
+       e.Student_ID
+FROM Courses AS c
+LEFT JOIN Enrollments AS e
+    ON c.Course_ID = e.Course_ID;
+*/
+
