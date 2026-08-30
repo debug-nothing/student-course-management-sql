@@ -241,5 +241,180 @@ SELECT c.Course_Name,
 FROM Courses AS c
 LEFT JOIN Enrollments AS e
     ON c.Course_ID = e.Course_ID;
-*/
 
+-- 44. Display Student Name as Name and City as Location.
+SELECT
+    Student_Name AS Name,
+    City AS Location
+FROM Students;
+
+-- 45. Display names of students enrolled in the SQL course.
+SELECT Student_Name
+FROM Students
+WHERE Student_ID IN
+(
+    SELECT Student_ID
+    FROM Enrollments
+    WHERE Course_ID =
+    (
+        SELECT Course_ID
+        FROM Courses
+        WHERE Course_Name = 'SQL'
+    )
+);
+
+-- 46. Students enrolled in the course with the highest fee.
+SELECT Student_Name
+FROM Students
+WHERE Student_ID IN
+(
+    SELECT Student_ID
+    FROM Enrollments
+    WHERE Course_ID =
+    (
+        SELECT Course_ID
+        FROM Courses
+        WHERE Fees =
+        (
+            SELECT MAX(Fees)
+            FROM Courses
+        )
+    )
+);
+
+-- 47. Categorize students as Senior and Junior.
+SELECT
+    Student_Name,
+    Age,
+    CASE
+        WHEN Age >= 23 THEN 'Senior'
+        ELSE 'Junior'
+    END AS Student_Category
+FROM Students;
+
+-- 48. Display Enrollment Year of each student.
+SELECT
+    s.Student_Name,
+    e.Enrollment_Date,
+    YEAR(e.Enrollment_Date) AS Enrollment_Year
+FROM Students s
+INNER JOIN Enrollments e
+ON s.Student_ID = e.Student_ID;
+
+-- 49. Students enrolled during March.
+SELECT
+    s.Student_Name,
+    e.Enrollment_Date
+FROM Students s
+INNER JOIN Enrollments e
+ON s.Student_ID = e.Student_ID
+WHERE MONTH(e.Enrollment_Date) = 3;
+
+-- 50. Which city has the highest number of students?
+SELECT
+    City,
+    COUNT(Student_ID) AS Total_Students
+FROM Students
+GROUP BY City
+ORDER BY Total_Students DESC
+LIMIT 1;
+
+-- 51. Which course has the highest fee?
+SELECT
+    Course_Name,
+    Fees
+FROM Courses
+ORDER BY Fees DESC
+LIMIT 1;
+
+-- 52. Which course has maximum enrollments?
+SELECT
+    c.Course_Name,
+    COUNT(e.Student_ID) AS Total_Enrollments
+FROM Courses c
+INNER JOIN Enrollments e
+ON c.Course_ID = e.Course_ID
+GROUP BY c.Course_Name
+ORDER BY Total_Enrollments DESC
+LIMIT 1;
+
+-- 53. Students enrolled in more than one course.
+SELECT
+    s.Student_Name,
+    COUNT(e.Course_ID) AS Total_Courses
+FROM Students s
+INNER JOIN Enrollments e
+ON s.Student_ID = e.Student_ID
+GROUP BY s.Student_Name
+HAVING COUNT(e.Course_ID) > 1;
+
+-- 54. Average age of students in each city.
+SELECT
+    City,
+    AVG(Age) AS Average_Age
+FROM Students
+GROUP BY City
+SELECT
+    City,
+    AVG(Age) AS Average_Age
+FROM Students
+GROUP BY City; 
+
+-- 55. Which city has the youngest average age?
+SELECT
+    City,
+    AVG(Age) AS Average_Age
+FROM Students
+GROUP BY City
+ORDER BY Average_Age ASC
+LIMIT 1;
+
+-- 56. Students who have NOT enrolled in any course.
+SELECT
+    s.Student_Name
+FROM Students s
+LEFT JOIN Enrollments e
+ON s.Student_ID = e.Student_ID
+WHERE e.Student_ID IS NULL;
+
+-- 57. Courses with NO students.
+SELECT
+    c.Course_Name
+FROM Courses c
+LEFT JOIN Enrollments e
+ON c.Course_ID = e.Course_ID
+WHERE e.Course_ID IS NULL;
+
+-- 58. Top 3 oldest students.
+SELECT
+    Student_Name,
+    Age
+FROM Students
+ORDER BY Age DESC
+LIMIT 3;
+
+-- 59. Three most expensive courses.
+SELECT
+    Course_Name,
+    Fees
+FROM Courses
+ORDER BY Fees DESC
+LIMIT 3; 
+
+-- SECTION I — FINAL PORTFOLIO REPORT (Query 60)
+SELECT
+    s.Student_ID,
+    s.Student_Name,
+    s.Gender,
+    s.Age,
+    s.City,
+    c.Course_Name,
+    c.Fees AS Course_Fees,
+    e.Enrollment_Date
+FROM Students s
+LEFT JOIN Enrollments e
+ON s.Student_ID = e.Student_ID
+LEFT JOIN Courses c
+ON e.Course_ID = c.Course_ID
+ORDER BY s.Student_ID; 
+*/
